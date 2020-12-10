@@ -86,6 +86,7 @@ covid19 %>% #server section
   geom_line()
 ```
 
+[shinyapp link](https://olitke.shinyapps.io/shiny_covid/?_ga=2.168317474.265228070.1607530694-1748292054.1607530694s)
   
 ## Warm-up exercises from tutorial
 
