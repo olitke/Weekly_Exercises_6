@@ -1,0 +1,12 @@
+name: shiny_covid
+title: shiny_covid
+username:
+account: olitke
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3378597
+bundleId: 3966425
+url: https://olitke.shinyapps.io/shiny_covid/
+when: 1607530414.66958
+asMultiple: FALSE
+asStatic: FALSE
