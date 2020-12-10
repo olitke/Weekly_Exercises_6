@@ -12,7 +12,7 @@ output:
 
 
 ```{r setup, include=FALSE}
-#knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(echo = TRUE, error=TRUE, message=FALSE, warning=FALSE)
 ```
 
 ```{r libraries}
@@ -137,6 +137,42 @@ Groceries_dataset %>%
 #left_join(Stations,
 #            by = c("sstation" = "name"))
 ```
-  
+
+
+```{r}
+plot1 <- garden_harvest %>%
+  filter(vegetable %in% c("lettuce")) %>%
+  mutate(caps = str_to_upper(variety, locale = "en")) %>%
+  group_by(caps) %>%
+    summarize(le_wt = mean(weight)) %>%
+  ggplot(aes(x = le_wt, y = fct_reorder(caps, (le_wt)), fill = caps)) +
+  geom_col(alpha = .75, show.legend = FALSE) +
+  labs(title = "Average Weights for Lettuce Varieties in Grams",
+       y = "",
+       x = "",
+       legend = NULL) +
+  theme_clean() +
+  theme(plot.title = element_text(hjust = -1.25))
+```
+
+```{r}
+plot2 <- garden_harvest %>%
+  filter(vegetable %in% c("tomatoes")) %>%
+  group_by(variety, date) %>%
+  mutate(wt_lbs = weight*0.00220462) %>%
+  summarize(tot_harvest = sum(wt_lbs),
+            min_date = min(date)) %>%
+  arrange(tot_harvest, (date)) %>%
+  ggplot(aes(x = min_date, fill = variety)) +
+  geom_bar()
+```
+
+```{r}
+plot1 + plot2 +plot_layout(ncol = 1)
+#it looks so ugly
+```
+
+
+
 
 **DID YOU REMEMBER TO UNCOMMENT THE OPTIONS AT THE TOP?**
